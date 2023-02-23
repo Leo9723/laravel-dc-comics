@@ -46,6 +46,10 @@
      margin-left: 40px;
      position: relative;
      bottom: 15px;
+     a{
+      text-decoration: none;
+      color: white;
+     }
    }
  }
   .maincont {
@@ -68,6 +72,10 @@
      font-weight: bold;
      font-size: large;
      padding: 5px 10px;
+     a{
+      text-decoration: none;
+      color: white;
+     }
    }
   }
   .cardContainer{
@@ -171,7 +179,15 @@
      }
    }
  }
-
+.element{
+  display: flex;
+  align-items: center;
+  .element-text{
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+  }
+}
 
  .blue-row{
   height: 50px;
@@ -203,4 +219,21 @@
   position: absolute;
   bottom: 290%;
   left: 15%;
+}
+.form-cont{
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  text-align: center;
+  input, textarea{
+    width: 350px;
+    margin: 10px;
+    border: 5px solid #0282f9;
+    border-radius: 20px;
+    padding: 10px;
+  }
+  .sub{
+    width: 70px;
+  }
 }
