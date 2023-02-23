@@ -2,29 +2,27 @@
 
 @section('content')
 
-<table class="table table-dark table-hover table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">title</th>
-      <th scope="col">price</th>
-      <th scope="col">sale_date</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($comics as $comic)
-  <tr>
-        <th scope="row">{{ $comic['id'] }}</th>
-        <td>
+
+
+<div class="maincont">
+@foreach ($comics as $comic)
+<div class="cardContainer">
+   <div class="carta">
             <a href="{{ route('comics.show', ['comic' => $comic['id']]) }}">
-                 {{ $comic['title'] }}
-            </a>
-        </td>
-        <td>{{ $comic['price'] }}</td>
-        <td>{{ $comic['sale_date'] }}</td>
-      </tr>
-    @endforeach
-  </tbody>
-</table>
+            <div class="thumb">
+               <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+            </div>
+            <div class="title">
+               {{ $comic['title'] }}
+            </div>
+         </a>
+         </div>
+
+</div>
+   @endforeach
+  </div>
+    <div class="button">
+      <button>LOAD MORE</button>
+    </div>
 
 @endsection('content')
