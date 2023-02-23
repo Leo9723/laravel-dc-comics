@@ -39,11 +39,13 @@ class ComicController extends Controller
     {
         $data = $request->all();
 
+        $comics = config('comics');
+
         $newComic = new Comic();
 
         $newComic->title = $data['title'];
         $newComic->description = $data['description'];
-        $newComic->thumb = $data['thumb'];
+        $newComic->thumb = $comics[0]['thumb'];
         $newComic->price = $data['price'];
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
