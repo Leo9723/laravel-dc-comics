@@ -8,7 +8,7 @@
 @foreach ($comics as $comic)
 <div class="cardContainer">
    <div class="carta">
-            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}">
+            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="card-link">
             <div class="thumb">
                <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
             </div>
@@ -16,12 +16,14 @@
                {{ $comic['title'] }}
             </div>
          </a>
-         <button class="edit-button"><a href="{{ route('comics.edit', ['comic' => $comic->id]) }}">EDIT</a></button>
-         <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="confirm-delete-comic" data-title="{{ $comic->title }}">DELETE</button>
-         </form>
+         <div class="buttons d-flex justify-content-around">
+            <button class="btn btn-success"><a href="{{ route('comics.edit', ['comic' => $comic->id]) }}">EDIT</a></button>
+            <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST">
+               @csrf
+               @method('DELETE')
+               <button type="submit" class="confirm-delete-comic btn btn-danger" data-title="{{ $comic->title }}">DELETE</button>
+            </form>
+         </div>
          </div>
 
 </div>

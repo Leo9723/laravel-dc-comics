@@ -80,12 +80,14 @@
   }
   .cardContainer{
    width: calc(100% / 6);
+   text-align: center;
    a{
       text-decoration: none;
       color: white;
    }
    .carta{
-       margin-bottom: 20px;
+       margin-bottom: 50px;
+       max-height: 400px;
        div{
             font-weight: bold;
             font-size: large;        
@@ -239,5 +241,19 @@
   }
   .sub{
     width: 70px;
+  }
+}
+.card-link{
+  height: 380px;
+  display: inline-block;
+  transition: all 0.25s;
+  img{
+    transition: all 0.5s;
+  }
+  &.card-link:hover{
+    scale: 1.1;
+  }
+  &.card-link:hover  img{
+    box-shadow: 0px 0px 10px 5px #0282f9af;
   }
 }
