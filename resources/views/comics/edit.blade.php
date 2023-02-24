@@ -29,7 +29,7 @@
     </div>
         @enderror
     <label for="title">Inserisci l'immagine:</label><br>
-    <input type="text" name="thumb" id="thumb" value="https://picsum.photos/200/300" value="{{ old('thumb') ?? $comic->thumb }}"><br>
+    <input type="text" name="thumb" id="thumb" value="{{ old('thumb') ?? $comic->thumb }}"><br>
     <label for="title">Inserisci il prezzo:</label><br>
     <input type="text" name="price" id="price" value="{{ old('price') ?? $comic->price }}"><br>
     @error('price')
