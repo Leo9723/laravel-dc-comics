@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
+
 
 class ComicController extends Controller
 {
@@ -37,19 +39,23 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+
+        $form_data = $this->validation($request->all());
+
 
         $comics = config('comics');
 
         $newComic = new Comic();
 
-        $newComic->title = $data['title'];
+/*         $newComic->title = $data['title'];
         $newComic->description = $data['description'];
         $newComic->thumb = $comics[0]['thumb'];
         $newComic->price = $data['price'];
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
+        $newComic->type = $data['type']; */
+
+        $newComic->fill($form_data);
 
         $newComic->save();
 
@@ -91,7 +97,15 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic = Comic::find($id);
+
+        if($comic){
+            $data = [
+                'comic' => $comic
+            ];
+
+            return view ('comics.edit', $data);
+        };
     }
 
     /**
@@ -103,7 +117,14 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comic = Comic::find($id);
+
+        $form_data = $this->validation($request->all());
+
+        $comic->update($form_data);
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
+
     }
 
     /**
@@ -114,6 +135,38 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comic = Comic::find($id);
+
+        $comic->delete();
+        return redirect()->route('comics.index');
+
+    }
+
+    private function validation($data){
+
+        $validator = Validator::make($data, [
+            'title' => 'required|max:100',
+            'description' => 'required|max:900',
+            'thumb' => 'nullable',
+            'price' => 'required',
+            'series' => 'required',
+            'sale_date' => 'nullable',
+            'type' => 'nullable|max:50',
+        ],
+        [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo è superiore a :max caratteri',
+            'description.required' => 'La descrizione è obbligatoria',
+            'description.max' => 'La descrizione superiore a :max caratteri',
+            'price.required' => 'Il prezzo è obbligatorio',
+            'series.required' => 'La serie di appartenenza è obbligatoria',
+            'type.max' => 'La tipologia è superiore a :max caratteri',
+        ]
+        )->validate();
+
+        return $validator;
+
+
+
     }
 }
