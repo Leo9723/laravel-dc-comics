@@ -2,6 +2,13 @@
 
 @section('content')
 
+@if($errors->any())
+<ul class="text-danger bg-black mb-0">
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
 
 <div class="form-cont">
     <form action="{{ route('comics.update', $comic->id)}}" method="POST">

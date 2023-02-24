@@ -3,7 +3,7 @@
 @section('content')
 
 @if($errors->any())
-<ul class="text-danger">
+<ul class="text-danger bg-black mb-0">
     @foreach($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
